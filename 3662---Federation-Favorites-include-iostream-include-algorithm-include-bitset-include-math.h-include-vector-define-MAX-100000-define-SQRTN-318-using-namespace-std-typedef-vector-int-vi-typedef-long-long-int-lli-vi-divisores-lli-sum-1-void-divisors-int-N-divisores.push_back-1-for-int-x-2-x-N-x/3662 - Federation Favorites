@@ -1,0 +1,41 @@
+#include <iostream>
+#include <algorithm>
+#include <bitset>
+#include <math.h>
+#include <vector>
+#define MAX 100000
+#define SQRTN 318
+using namespace std;
+typedef vector<int> vi;
+typedef long long int lli;
+vi divisores;
+lli sum = 1;
+void divisors(int N){
+    divisores.push_back(1);
+    for(int x=2;x<N;x++){
+        //cout << x << "\n";
+        if(N%x == 0){
+            divisores.push_back(x);
+            sum+=x;
+        }
+    }
+}
+
+int main(){
+    int N;
+    ios_base::sync_with_stdio(false); cin.tie(0);
+    while(cin >> N && N != -1){
+        divisores.clear();
+        sum = 1;
+        divisors(N);
+        if(sum == N){
+            cout << N << " = " <<divisores[0];
+            for(int x=1;x<divisores.size();x++){
+                cout << " + " << divisores[x];
+            }
+        }else{
+            cout << N << " is NOT perfect.";
+        }
+        cout << "\n";
+    }
+}
